@@ -1,1 +1,2 @@
-CENTROVENETO = "Banca del Veneto Centrale"
+CENTROVENETO = "BANCA VENETO CENTRALE"
+UNSUPPORTED = 'Unsupported document'
