@@ -23,21 +23,6 @@ classifiers = [
 ]
 packages = [{include = "estrattoconto", from = "src"}]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-pandas = "^2.0.0"
-numpy = "^1.24.0"
-docling = "^2.0.0"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.0.0"
-pytest-cov = "^5.0.0"
-pylint = "^3.0.0"
-black = "^24.0.0"
-ruff = "^0.4.0"
-mypy = "^1.9.0"
-pandas-stubs = "^2.0.0"
-
 [tool.poetry.scripts]
 estrattoconto = "estrattoconto.__main__:main"
 
@@ -58,12 +43,12 @@ addopts = [
 
 [tool.black]
 line-length = 100
-target-version = ["py310", "py311", "py312", "py313"]
+target-version = [ "py312"]
 include = '\.pyi?$'
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py312"
 
 [tool.ruff.lint]
 select = [
@@ -80,7 +65,7 @@ ignore = [
 ]
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.12"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
