@@ -217,11 +217,6 @@ poetry build
 # Install package locally for testing
 pip install dist/estrattoconto-0.1.0-py3-none-any.whl
 
-# Publish to PyPI (requires authentication)
-poetry publish
-
-# Publish to Test PyPI first
-poetry publish --repository testpypi
 ```
 
 The project uses GitHub Actions to run pylint on every push (Python 3.13+).
