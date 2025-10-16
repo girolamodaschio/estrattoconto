@@ -16,22 +16,10 @@ Currently supports:
 
 ## Installation
 
-### Using pip
-
-```bash
-pip install estrattoconto
-```
-
-### Using Poetry (recommended for development)
-
-```bash
-poetry add estrattoconto
-```
-
 ### From source
 
 ```bash
-git clone https://github.com/yourusername/py-estrattoconto.git
+git clone https://github.com/girolamodaschio/py-estrattoconto.git
 cd py-estrattoconto
 poetry install
 ```
@@ -134,7 +122,7 @@ poetry run python examples/basic_usage.py
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/py-estrattoconto.git
+git clone https://github.com/girolamodaschio/py-estrattoconto.git
 cd py-estrattoconto
 
 # Install dependencies (including dev dependencies)
