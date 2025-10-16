@@ -52,7 +52,46 @@ Save output to CSV:
 estrattoconto extract path/to/statement.pdf --output transactions.csv
 ```
 
-### Python API
+### Python API (Object-Oriented)
+
+The recommended way to use estrattoconto is through the object-oriented API:
+
+```python
+import estrattoconto
+
+# Convert PDF to EstrattoConto object
+statement = estrattoconto.convert('bank_statement.pdf')
+
+# Export to various formats
+statement.to_csv('transactions.csv')
+statement.to_json('transactions.json')
+statement.to_excel('transactions.xlsx')
+
+# Query transaction data
+payers = statement.extract_payers()
+payees = statement.extract_payees()
+
+# Filter by transaction type
+bills = statement.get_bills()
+incoming_transfers = statement.get_incoming_transfers()
+outgoing_transfers = statement.get_outgoing_transfers()
+fees = statement.get_fees()
+
+# Filter by date range
+january_transactions = statement.filter_by_date('01/01/2025', '31/01/2025')
+
+# Get summary statistics
+summary = statement.summary()
+print(f"Total transactions: {summary['total_transactions']}")
+print(f"Total bills: {summary['total_bills']}")
+
+# Access underlying DataFrame if needed
+df = statement.get_dataframe()
+```
+
+### Legacy API (Functional)
+
+For advanced use cases, the functional API is still available:
 
 ```python
 from estrattoconto import extract_table, enrich_data
@@ -76,6 +115,18 @@ The enriched DataFrame includes:
 - **Numeric amounts**: DARE_Numeric, AVERE_Numeric, amount (combined)
 - **Classification flags**: is_bill, is_incoming_transfer, is_outcoming_transfer, is_bank_fee
 - **Metadata**: related_account, period
+
+### Examples
+
+For complete working examples, see the [examples/](examples/) directory:
+
+```bash
+# Run the basic usage example
+python examples/basic_usage.py
+
+# Or with Poetry
+poetry run python examples/basic_usage.py
+```
 
 ## Development
 
