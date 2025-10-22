@@ -2,7 +2,7 @@
 
 
 deploy as docker image to fix pytorch issues on mac intel. image should receive a pdf encoded in base64 and return appropriate json structure
-
+evaluate using docling serve instead of building docling straightaway
 
 A Python library for extracting and enriching transaction data from Italian bank statement PDFs (estratto conto).
 
