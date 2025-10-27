@@ -4,9 +4,8 @@ Example usage of the estrattoconto package.
 This demonstrates the object-oriented API for extracting and working with
 Italian bank statement data.
 """
-
+from pathlib import Path
 import estrattoconto
-
 
 def main():
     """
@@ -18,7 +17,8 @@ def main():
     3. Demonstrate various query and export methods
     """
     # Convert PDF to EstrattoConto object
-    statement = estrattoconto.convert('tests/fixture/centroveneto.pdf')
+    base_dir = Path(__file__).parent.parent
+    statement = estrattoconto.convert(f'{base_dir}/tests/fixture/centroveneto.pdf')
 
     # Print statement summary
     print(statement)

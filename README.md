@@ -1,8 +1,4 @@
-# py-estrattoconto
-
-
-deploy as docker image to fix pytorch issues on mac intel. image should receive a pdf encoded in base64 and return appropriate json structure
-evaluate using docling serve instead of building docling straightaway
+# estrattoconto
 
 A Python library for extracting and enriching transaction data from Italian bank statement PDFs (estratto conto).
 
@@ -23,8 +19,8 @@ Currently supports:
 ### From source
 
 ```bash
-git clone https://github.com/girolamodaschio/py-estrattoconto.git
-cd py-estrattoconto
+git clone https://github.com/girolamodaschio/estrattoconto.git
+cd estrattoconto
 poetry install
 ```
 
@@ -44,7 +40,7 @@ Save output to CSV:
 estrattoconto extract path/to/statement.pdf --output transactions.csv
 ```
 
-### Python API (Object-Oriented)
+### Python API
 
 The recommended way to use estrattoconto is through the object-oriented API:
 
@@ -81,22 +77,6 @@ print(f"Total bills: {summary['total_bills']}")
 df = statement.get_dataframe()
 ```
 
-### Legacy API (Functional)
-
-For advanced use cases, the functional API is still available:
-
-```python
-from estrattoconto import extract_table, enrich_data
-
-# Extract tables from PDF
-book_balance, account_info, balance_summary, transactions = extract_table('statement.pdf')
-
-# Enrich transaction data
-enriched_df = enrich_data((book_balance, account_info, balance_summary, transactions))
-
-# Access enriched data
-print(enriched_df[['DATA MOV.', 'amount', 'payer', 'payee', 'is_bill']])
-```
 
 ### Enriched Data Columns
 
@@ -126,8 +106,8 @@ poetry run python examples/basic_usage.py
 
 ```bash
 # Clone repository
-git clone https://github.com/girolamodaschio/py-estrattoconto.git
-cd py-estrattoconto
+git clone https://github.com/girolamodaschio/estrattoconto.git
+cd estrattoconto
 
 # Install dependencies (including dev dependencies)
 poetry install
@@ -183,10 +163,6 @@ poetry run pylint $(git ls-files '*.py')
 
 See [CLAUDE.md](CLAUDE.md) for detailed instructions on adding support for additional bank formats.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Requirements
 
 - Python 3.10+
@@ -197,11 +173,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Roadmap
 
 - [ ] Support for additional Italian banks
-- [ ] Export to SQL/Django ORM models
+- [ ] Support for all bank statement reports
 - [ ] Transaction categorization using ML
 - [ ] Web interface for PDF upload
 - [ ] Batch processing support
+- [ ] Evaluate usage 
 
 ## Acknowledgments
 
-Built with [docling](https://github.com/DS4SD/docling) for PDF document conversion.
+Built with [docling](https://github.com/docling-project/docling) for PDF document conversion.

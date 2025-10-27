@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-py-estrattoconto is a Python package for extracting and enriching transaction data from Italian bank statement PDFs (estratto conto). The project uses the `docling` library for document conversion and provides both an object-oriented Python API and CLI interface.
+estrattoconto is a Python package for extracting and enriching transaction data from Italian bank statement PDFs (estratto conto). The project uses the `docling` library for document conversion and provides both an object-oriented Python API and CLI interface.
 
 The package is structured as a modern Python project using Poetry for dependency management and packaging.
 
@@ -33,16 +33,16 @@ enriched_df = enrich_data(tables)
 
 The extraction pipeline consists of four main stages:
 
-1. **PDF Conversion** (src/estrattoconto/converter.py): Uses `docling.DocumentConverter` to convert PDF documents into structured document objects with tables
-2. **Document Type Detection** (src/estrattoconto/converter.py:10-24): Automatically identifies the bank type by scanning document text for known bank identifiers
-3. **Table Extraction** (src/estrattoconto/converter.py:46-73): Extracts four specific table types from the converted document based on detected bank type
-4. **Data Enrichment** (src/estrattoconto/enrichment.py): Extracts semantic information from raw transaction data and adds classification flags
-5. **Object Wrapping** (src/estrattoconto/statement.py): Wraps enriched DataFrame in `EstrattoConto` class with query and export methods
+1. **PDF Conversion** (./estrattoconto/converter.py): Uses `docling.DocumentConverter` to convert PDF documents into structured document objects with tables
+2. **Document Type Detection** (./estrattoconto/converter.py:10-24): Automatically identifies the bank type by scanning document text for known bank identifiers
+3. **Table Extraction** (./estrattoconto/converter.py:46-73): Extracts four specific table types from the converted document based on detected bank type
+4. **Data Enrichment** (./estrattoconto/enrichment.py): Extracts semantic information from raw transaction data and adds classification flags
+5. **Object Wrapping** (./estrattoconto/statement.py): Wraps enriched DataFrame in `EstrattoConto` class with query and export methods
 
 ### Package Structure
 
 ```
-src/estrattoconto/
+estrattoconto/
 ├── __init__.py         # Public API exports (convert(), EstrattoConto, legacy functions)
 ├── __version__.py      # Version information (0.1.0)
 ├── __main__.py         # CLI entry point
@@ -53,7 +53,7 @@ src/estrattoconto/
 └── statement.py        # EstrattoConto class (object-oriented API) ⭐ NEW
 ```
 
-### EstrattoConto Class (src/estrattoconto/statement.py)
+### EstrattoConto Class (./estrattoconto/statement.py)
 
 The main user-facing class that wraps enriched transaction data:
 
@@ -93,7 +93,7 @@ EstrattoConto wrapper → User interacts with methods
 
 ### Bank-Specific Parsing
 
-The codebase uses an automatic bank type detection system (src/estrattoconto/converter.py:10-24):
+The codebase uses an automatic bank type detection system (./estrattoconto/converter.py:10-24):
 - Scans document text using `extract_document_type()` to find bank identifier strings
 - Currently supports: CENTROVENETO ("BANCA VENETO CENTRALE")
 - Returns UNSUPPORTED for unrecognized document types
@@ -104,7 +104,7 @@ For CENTROVENETO statements, the table structure is:
 - Tables 2 to n-1: Transaction data tables
 - Table n (last): Balance summary
 
-### Enrichment Process (src/estrattoconto/enrichment.py)
+### Enrichment Process (./estrattoconto/enrichment.py)
 
 The enrichment pipeline transforms raw transaction data into a structured, classified dataset:
 
@@ -115,7 +115,7 @@ The enrichment pipeline transforms raw transaction data into a structured, class
    - `payee`: Extracted from "ADDEBITO CRED. ... ID.MANDATO" pattern
    - `id_mandato`: Extracted from "ID.MANDATO ... RIF./SDD" pattern
 
-3. **Currency Conversion** (src/estrattoconto/utils.py): The `clean_and_convert_currency()` function handles Italian currency format:
+3. **Currency Conversion** (./estrattoconto/utils.py): The `clean_and_convert_currency()` function handles Italian currency format:
    - Removes € symbol and spaces
    - Converts thousands separator (.) to nothing
    - Converts decimal separator (,) to period (.)
@@ -177,11 +177,11 @@ poetry run black src/ tests/ examples/
 poetry run ruff check src/ tests/ examples/
 
 # Lint with pylint (used in CI)
-poetry run pylint src/estrattoconto
+poetry run pylint ./estrattoconto
 poetry run pylint $(git ls-files '*.py')
 
 # Type checking with mypy
-poetry run mypy src/estrattoconto
+poetry run mypy ./estrattoconto
 ```
 
 ### Using the CLI
@@ -215,7 +215,7 @@ python examples/basic_usage.py
 poetry build
 
 # Install package locally for testing
-pip install dist/estrattoconto-0.1.0-py3-none-any.whl
+pip install dist./estrattoconto-0.1.0-py3-none-any.whl
 
 ```
 
@@ -227,10 +227,10 @@ The project uses GitHub Actions to run pylint on every push (Python 3.13+).
 
 To add a new bank format:
 
-1. Add bank identifier constant to `src/estrattoconto/config.py` (e.g., `NEWBANK = "BANK NAME"`)
-2. Update `extract_document_type()` (src/estrattoconto/converter.py:10-24) to detect the new bank's identifier in document text
-3. Update the conditional in `extract_table()` (src/estrattoconto/converter.py:54-73) to handle the new bank's table structure
-4. Update `enrich_data()` (src/estrattoconto/enrichment.py) with bank-specific regex patterns for that bank's transaction description format
+1. Add bank identifier constant to `./estrattoconto/config.py` (e.g., `NEWBANK = "BANK NAME"`)
+2. Update `extract_document_type()` (./estrattoconto/converter.py:10-24) to detect the new bank's identifier in document text
+3. Update the conditional in `extract_table()` (./estrattoconto/converter.py:54-73) to handle the new bank's table structure
+4. Update `enrich_data()` (./estrattoconto/enrichment.py) with bank-specific regex patterns for that bank's transaction description format
 5. Add tests in `tests/test_converter.py` and `tests/test_statement.py` for the new bank
 6. Test with fixture PDF from that bank
 
@@ -238,7 +238,7 @@ To add a new bank format:
 
 When adding new query or filter methods to the `EstrattoConto` class:
 
-1. Add the method to `src/estrattoconto/statement.py`
+1. Add the method to `./estrattoconto/statement.py`
 2. Follow the existing pattern: methods that filter return `pd.DataFrame`, methods that extract return `List[str]`
 3. Add comprehensive tests in `tests/test_statement.py`
 4. Update docstrings with examples
@@ -252,7 +252,7 @@ The codebase is specifically designed for Italian banking formats:
 - **Currency symbol**: € (euro)
 - **Sign notation**: Prefix +/- before amount
 
-The `clean_and_convert_currency()` function (src/estrattoconto/utils.py) must be applied to all monetary columns before numeric operations.
+The `clean_and_convert_currency()` function (./estrattoconto/utils.py) must be applied to all monetary columns before numeric operations.
 
 ### Regex Pattern Matching for Transaction Classification
 
@@ -266,8 +266,6 @@ All transaction enrichment relies on pattern matching within the `DESCRIZIONE OP
 ## Python Version
 
 Target: Python 3.10+ (supports 3.10, 3.11, 3.12, 3.13)
-
-CI runs tests on Python 3.13 (as specified in GitHub Actions workflow)
 
 ## Dependencies
 
@@ -289,17 +287,14 @@ Managed via Poetry in `pyproject.toml`:
 
 ## Current Limitations & Known Issues
 
-1. **Bug in extract_document_type()** (src/estrattoconto/converter.py:10-24): The function returns UNSUPPORTED on the first iteration when the bank identifier is NOT found, instead of continuing to check all text elements. This should loop through all texts before returning UNSUPPORTED.
-
-2. **No SQL Export Implementation**: Django integration is pending. Users can export to CSV/JSON/Excel using the `EstrattoConto` methods.
-
-3. **Empty Dare/Avere Filtering** (src/estrattoconto/enrichment.py): The code sets DARE/AVERE to empty string when they don't contain "€", but this logic may need refinement as the currency symbol should always be present in valid monetary columns.
+1. **Bug in extract_document_type()** (./estrattoconto/converter.py:10-24): The function returns UNSUPPORTED on the first iteration when the bank identifier is NOT found, instead of continuing to check all text elements. This should loop through all texts before returning UNSUPPORTED.
+2**Empty Dare/Avere Filtering** (./estrattoconto/enrichment.py): The code sets DARE/AVERE to empty string when they don't contain "€", but this logic may need refinement as the currency symbol should always be present in valid monetary columns.
 
 ## Project Structure
 
 ```
-py-estrattoconto/
-├── src/estrattoconto/          # Main package
+estrattoconto/
+├── ./estrattoconto/          # Main package
 ├── tests/                      # Test suite
 ├── examples/                   # Usage examples
 │   ├── basic_usage.py          # Demonstrates OO API

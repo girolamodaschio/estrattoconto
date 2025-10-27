@@ -1,5 +1,5 @@
 """
-py-estrattoconto: Italian bank statement PDF extractor and enricher.
+estrattoconto: Italian bank statement PDF extractor and enricher.
 
 This package provides tools to extract transaction data from Italian bank
 statement PDFs and enrich them with semantic information and classifications.
