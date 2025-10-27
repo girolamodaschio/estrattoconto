@@ -4,8 +4,7 @@ import unittest
 import pandas as pd
 import numpy as np
 
-from estrattoconto import clean_and_convert_currency
-
+from src.estrattoconto import clean_and_convert_currency
 
 class TestUtils(unittest.TestCase):
     """Test cases for utility functions."""

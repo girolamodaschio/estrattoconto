@@ -1,6 +1,5 @@
 """Bank statement object-oriented API."""
 
-from pathlib import Path
 from typing import Optional, List
 import pandas as pd
 
