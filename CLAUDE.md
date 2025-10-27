@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-py-estrattoconto is a Python package for extracting and enriching transaction data from Italian bank statement PDFs (estratto conto). The project uses the `docling` library for document conversion and provides both an object-oriented Python API and CLI interface.
+estrattoconto is a Python package for extracting and enriching transaction data from Italian bank statement PDFs (estratto conto). The project uses the `docling` library for document conversion and provides both an object-oriented Python API and CLI interface.
 
 The package is structured as a modern Python project using Poetry for dependency management and packaging.
 
@@ -298,7 +298,7 @@ Managed via Poetry in `pyproject.toml`:
 ## Project Structure
 
 ```
-py-estrattoconto/
+estrattoconto/
 ├── src/estrattoconto/          # Main package
 ├── tests/                      # Test suite
 ├── examples/                   # Usage examples

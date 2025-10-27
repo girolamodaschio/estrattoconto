@@ -1,4 +1,4 @@
-# py-estrattoconto
+# estrattoconto
 
 
 deploy as docker image to fix pytorch issues on mac intel. image should receive a pdf encoded in base64 and return appropriate json structure
@@ -23,8 +23,8 @@ Currently supports:
 ### From source
 
 ```bash
-git clone https://github.com/girolamodaschio/py-estrattoconto.git
-cd py-estrattoconto
+git clone https://github.com/girolamodaschio/estrattoconto.git
+cd estrattoconto
 poetry install
 ```
 
@@ -126,8 +126,8 @@ poetry run python examples/basic_usage.py
 
 ```bash
 # Clone repository
-git clone https://github.com/girolamodaschio/py-estrattoconto.git
-cd py-estrattoconto
+git clone https://github.com/girolamodaschio/estrattoconto.git
+cd estrattoconto
 
 # Install dependencies (including dev dependencies)
 poetry install
