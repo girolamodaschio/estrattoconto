@@ -219,7 +219,6 @@ pip install dist./estrattoconto-0.1.0-py3-none-any.whl
 
 ```
 
-The project uses GitHub Actions to run pylint on every push (Python 3.13+).
 
 ## Key Implementation Details
 
