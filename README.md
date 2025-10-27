@@ -159,9 +159,9 @@ poetry run pylint $(git ls-files '*.py')
 6. Push to the branch (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
 
-### Adding Support for New Banks
+### Updating this repo with Agents
 
-See [CLAUDE.md](CLAUDE.md) for detailed instructions on adding support for additional bank formats.
+See [AGENTS.md](AGENTS.md) for detailed instructions
 
 ## Requirements
 
