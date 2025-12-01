@@ -83,11 +83,8 @@ def enrich_data(extracted_tables: tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame
     data_table.loc[~av_mask, 'DARE'] = ""
 
     # Convert Italian currency format to numeric
-    data_table['DARE_Numeric'] = clean_and_convert_currency(data_table['DARE'])
-    data_table['AVERE_Numeric'] = clean_and_convert_currency(data_table['AVERE'])
-
-    # Combine DARE and AVERE into single amount column
-    data_table['amount'] = data_table['DARE_Numeric'].combine_first(data_table['AVERE_Numeric'])
+    data_table['DARE'] = clean_and_convert_currency(data_table['DARE'])
+    data_table['AVERE'] = clean_and_convert_currency(data_table['AVERE'])
 
     # Transaction classification flags
     data_table['is_bill'] = data_table['DESCRIZIONE OPERAZIONE'].str.contains(
@@ -100,7 +97,7 @@ def enrich_data(extracted_tables: tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame
         'BONIFICO coordinate benef', case=False, na=False
     )
     data_table['is_bank_fee'] = data_table['DESCRIZIONE OPERAZIONE'].str.contains(
-        'CANONE', case=False, na=False
+        'CANONE|COMMISSIONI', case=False, na=False
     )
 
     # Add metadata from other tables
