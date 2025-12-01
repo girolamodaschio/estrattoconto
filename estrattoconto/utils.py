@@ -39,4 +39,4 @@ def clean_and_convert_currency(series: pd.Series) -> pd.Series:
     cleaned_series = cleaned_series.str.replace(',', '.', regex=False)
     cleaned_series = cleaned_series.str.replace('+', '', regex=False)
     cleaned_series = cleaned_series.str.replace('-', '', regex=False)
-    return pd.to_numeric(cleaned_series, errors="coerce")
+    return pd.to_numeric(cleaned_series, errors="coerce", downcast='float')
