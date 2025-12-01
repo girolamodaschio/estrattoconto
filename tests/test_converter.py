@@ -12,10 +12,10 @@ class TestConverter(unittest.TestCase):
     def test_extract_table_returns_tuple(self):
         """Test that extract_table returns a tuple of 4 DataFrames."""
         # Note: This test will fail if the fixture PDF is not present
-        filepath = Path("tests/fixture/centroveneto.pdf")
+        filepath = Path(f"./fixture/centroveneto.pdf")
 
         if not filepath.exists():
-            self.skipTest("Test fixture not available (tests/fixture/centroveneto.pdf)")
+            self.skipTest("Test fixture not available (./fixture/centroveneto.pdf)")
 
         extraction = extract_table(str(filepath))
         self.assertIsInstance(extraction, tuple)
@@ -23,10 +23,10 @@ class TestConverter(unittest.TestCase):
 
     def test_extract_table_dataframes_not_empty(self):
         """Test that extracted DataFrames contain data."""
-        filepath = Path("tests/fixture/centroveneto.pdf")
+        filepath = Path("./fixture/centroveneto.pdf")
 
         if not filepath.exists():
-            self.skipTest("Test fixture not available (tests/fixture/centroveneto.pdf)")
+            self.skipTest("Test fixture not available (./fixture/centroveneto.pdf)")
 
         book_balance, account_info, balance_summary, transactions = extract_table(str(filepath))
 
